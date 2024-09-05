@@ -6,12 +6,13 @@ public class Background : MonoBehaviour
 {
 
     public Sprite[] background;
-    int imageNumber;
 
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = background[Random.Range(0, background.Length)];
+
+        int imageNumber = Random.Range(0, 7);
+        GetComponent<SpriteRenderer>().sprite = background[imageNumber];
     }
 
     // Update is called once per frame
