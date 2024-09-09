@@ -5,47 +5,53 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
-    public int score { get; private set; }
+    public int Score { get; private set; }
     public bool GoldMode = false;
     public GameObject goldFrame;
     private float timer = 0;
     public float goldTime = 20;
 
+    void Update()
+    {
+        if (GoldMode == true)
+        {
+        timer += Time.deltaTime;
+
+            if (timer > goldTime) {
+            GoldMode = false;
+            goldFrame.SetActive(false);
+            timer = 0;
+            }
+
+        }
+    }
+
     public void IncrementScore() 
     {if (!GoldMode)
         {
-            score++;
+            Score++;
         } else
         {
-            score += 2;
+            Score += 2;
         }
     }
 
     public void AlternateScore()
     {if (!GoldMode)
         {
-            score += 2;
+            Score += 2;
         }
         else
         {
-            score += 4;
+            Score += 4;
         }
     }
 
     public void GoGoldMode()
     { 
-        timer += Time.deltaTime;
         
-        if (timer < goldTime)
-        {
-            GoldMode = true;
-            goldFrame.SetActive(true);
-        } else
-        {
-            GoldMode = false;
-            goldFrame.SetActive(false);
-            timer = 0;
-        }
+        GoldMode = true;
+        goldFrame.SetActive(true); 
         
     }
     
