@@ -16,15 +16,17 @@ public class DestroyGoldenFruit : MonoBehaviour
 
     }
 
-        private void OnMouseDown()
+    private void OnMouseDown()
     {
-        collectGoldenFruit.Invoke();
-        Destroy(gameObject);
-        Vector2 mousePos = Input.mousePosition;
-        Vector2 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
-        Instantiate(collected, objectPos, Quaternion.identity);
-        Debug.Log(gameObject.name + "collected!");
+        if (!PauseMenu.isPaused)
+        {
+            collectGoldenFruit.Invoke();
+            Destroy(gameObject);
+            Vector2 mousePos = Input.mousePosition;
+            Vector2 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
+            Instantiate(collected, objectPos, Quaternion.identity);
+            Debug.Log(gameObject.name + "collected!");
+        }
     }
-
 
 }
