@@ -20,23 +20,26 @@ public class DestroyFruit : MonoBehaviour
     }
     void OnMouseDown()
     {
-        if (gameObject.tag == "PrimaryFruit")
+        if (!PauseMenu.isPaused)
         {
-            collectFruit.Invoke();
-            Destroy(gameObject);
-            Vector2 mousePos = Input.mousePosition;
-            Vector2 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
-            Instantiate(collected, objectPos, Quaternion.identity);
-            Debug.Log(gameObject.name + "collected!");
-        }
-        else
-        {
-            collectAlternateFruit.Invoke();
-            Destroy(gameObject);
-            Vector2 mousePos = Input.mousePosition;
-            Vector2 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
-            Instantiate(collected, objectPos, Quaternion.identity);
-            Debug.Log(gameObject.name + "collected!");
+            if (gameObject.tag == "PrimaryFruit")
+            {
+                collectFruit.Invoke();
+                Destroy(gameObject);
+                Vector2 mousePos = Input.mousePosition;
+                Vector2 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
+                Instantiate(collected, objectPos, Quaternion.identity);
+                Debug.Log(gameObject.name + "collected!");
+            }
+            else
+            {
+                collectAlternateFruit.Invoke();
+                Destroy(gameObject);
+                Vector2 mousePos = Input.mousePosition;
+                Vector2 objectPos = Camera.main.ScreenToWorldPoint(mousePos);
+                Instantiate(collected, objectPos, Quaternion.identity);
+                Debug.Log(gameObject.name + "collected!");
+            }
         }
     }
     
