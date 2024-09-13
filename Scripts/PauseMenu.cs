@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject pauseMenu;
     public GameObject pauseButton;
+    GameController gameController;
     public static bool isPaused = false;
+    public string score;
 
     // Start is called before the first frame update
     void Start()
     {
+        score = GameObject.FindGameObjectWithTag("Score").GetComponent<ScoreCount>().score_text.text;
         pauseMenu.SetActive(false);
     }
 
@@ -40,7 +45,8 @@ public class PauseMenu : MonoBehaviour
     public void GoToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("ScoreScreen");
+        gameController.SaveScore();
     }
 
     public void QuitGame ()
