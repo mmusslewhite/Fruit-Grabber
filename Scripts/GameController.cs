@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class GameController : MonoBehaviour
 {
-    public int Score { get; private set; }
+    public int Score { get; set; }
     public bool GoldMode = false;
     public GameObject goldFrame;
     private float timer = 0;
     public float goldTime = 20;
+    public TextMeshProUGUI score;
 
     void Update()
     {
@@ -54,5 +57,16 @@ public class GameController : MonoBehaviour
         goldFrame.SetActive(true); 
         
     }
+
+    public void SaveScore()
+    {
+        PlayerPrefs.SetInt("Score", Score);
+    }
+    
+    public void LoadScore()
+    {
+        score.text = (PlayerPrefs.GetInt("Score").ToString());
+    }
+
     
 }
