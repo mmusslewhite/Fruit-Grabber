@@ -4,6 +4,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
+using UnityEngine.SceneManagement;
+using UnityEditor.SearchService;
 
 public class GameController : MonoBehaviour
 {
@@ -26,6 +28,15 @@ public class GameController : MonoBehaviour
             timer = 0;
             }
 
+        }
+
+        UnityEngine.SceneManagement.Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+
+
+        if (sceneName == "ScoreScreen")
+        {
+            LoadScore();
         }
     }
 
