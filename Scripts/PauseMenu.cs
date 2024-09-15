@@ -11,7 +11,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseButton;
     GameController gameController;
     public static bool isPaused = false;
-    public string score;
+    private string score;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +32,7 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         isPaused = true;
+        gameObject.GetComponent<GameController>().SaveScore();
     }
 
     public void ResumeGame()
@@ -46,7 +47,7 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene("ScoreScreen");
-        gameController.SaveScore();
+        isPaused = false;
     }
 
     public void QuitGame ()
